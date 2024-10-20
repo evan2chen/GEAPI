@@ -12,9 +12,9 @@ def empty():
 
 @app.route('/valassistant/positioning',methods = ['GET'])
 def positioning():
-    map = request.args.get('map', default = None).lower()
-    gun = request.args.get('weapon', default = None).lower()
-    rank = request.args.get('rank', default = None).lower()
+    map = request.args.get('map', default = None)
+    gun = request.args.get('weapon', default = None)
+    rank = request.args.get('rank', default = None)
     if not map or not gun or not rank:
         return jsonify({"error": "Missing parameters"}), 400
     
