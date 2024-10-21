@@ -28,14 +28,11 @@ def positioning():
 
 @app.route('/G-Explain', methods = ['POST'])
 def explain():
-    message = request.json.get('message', default = None)
-    user = request.json.get('userID', default = None)
+    message = request.json.get('message', None)
+    user = request.json.get('userID', None)
 
-
-    if message is not None and message is not "":
-    
+    if message is not None and message != "":
         return GEA_Chat.static_explain(message)
-    
     
     return "send a message please"
 
