@@ -1,5 +1,7 @@
 
 from flask import Flask, jsonify, request
+from explain import *
+
 
 app = Flask(__name__)
 
@@ -23,6 +25,19 @@ def positioning():
     rank = rank.lower()
 
     return f"You requested to see the positioning guide for {rank} players on {map} with {gun}"
+
+@app.route('/G-Explain', methods = ['POST'])
+def explain():
+    message = request.json.get('message', default = None)
+    user = request.json.get('userID', default = None)
+
+
+    if message is not None and message is not "":
+    
+        return GEA_Chat.static_explain(message)
+    
+    
+    return "send a message please"
 
 
 
