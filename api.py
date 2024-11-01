@@ -38,10 +38,17 @@ def explain():
 
 
 
-@app.route('/hi', methods=['GET'])
+@app.route('/mysterybox/hi', methods=['GET'])
 def hi():
     return jsonify({"message": "hi"})
 
+@app.route('/mysterybox/help')
+def help():
+    return jsonify({"message": "HELLLP HELLP!!! HELP MEE HELP HELP"})
+
+@app.route('/mysterybox/lol')
+def lol():
+    return jsonify({"message": "?"})
 
 
 if __name__ == '__main__':
