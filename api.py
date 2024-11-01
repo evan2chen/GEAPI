@@ -5,7 +5,9 @@ from explain import *
 
 app = Flask(__name__)
 
-
+@app.route('/ping')
+def ping():
+    return "ping received"
 
 @app.route('/')
 def empty():
@@ -37,16 +39,18 @@ def explain():
     return "send a message please"
 
 
-
+@app.route('/mystery_box/', methods=['GET'])
+def mysterybox():
+    return jsonify({"message": "welcome to the mystery box have fun"})
 @app.route('/mysterybox/hi', methods=['GET'])
 def hi():
     return jsonify({"message": "hi"})
 
-@app.route('/mysterybox/help')
+@app.route('/mystery_box/help', methods=['GET'])
 def help():
     return jsonify({"message": "HELLLP HELLP!!! HELP MEE HELP HELP"})
 
-@app.route('/mysterybox/lol')
+@app.route('/mystery_box/lol', methods=['GET'])
 def lol():
     return jsonify({"message": "?"})
 
