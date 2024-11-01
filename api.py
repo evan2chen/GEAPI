@@ -41,18 +41,19 @@ def explain():
 
 @app.route('/mystery_box/', methods=['GET'])
 def mysterybox():
-    return jsonify({"message": "welcome to the mystery box have fun"})
-@app.route('/mysterybox/hi', methods=['GET'])
+    return "welcome to the mystery box have fun"
+
+@app.route('/mystery_box/hi', methods=['GET'])
 def hi():
-    return jsonify({"message": "hi"})
+    return "hi"
 
 @app.route('/mystery_box/help', methods=['GET'])
 def help():
-    return jsonify({"message": "HELLLP HELLP!!! HELP MEE HELP HELP"})
+    return "HELLLP HELLP!!! HELP MEE HELP HELP"
 
 @app.route('/mystery_box/lol', methods=['GET'])
 def lol():
-    return jsonify({"message": "?"})
+    return "?"
 
 
 if __name__ == '__main__':
