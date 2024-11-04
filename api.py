@@ -46,29 +46,29 @@ def mysterybox():
 @app.route('/mystery_box/cube', methods = ['GET'])
 def cube():
     from collections import defaultdict
-    actions = ["north", "south", "east", "west", "up", "down"]
+    actions = ["North", "South", "East", "West", "Up", "Down"]
     freq = defaultdict(int)
     question = []
     for i in range (10):
         action = random.choice(actions)
         question.append(action)
         freq[action] += 1
-    height =abs( freq["up"] - freq["down"])
-    length = abs(freq["west"] - freq["east"])
-    width = abs(freq["north"] - freq["south"])
+    height =abs( freq["Up"] - freq["Down"])
+    length = abs(freq["West"] - freq["East"])
+    width = abs(freq["North"] - freq["South"])
     answer = (length+1)*(width+1)*(height+1)
 
     text = """
-    A cube moves through 3D space in discrete units. 
+    A cube of volume 1 moves through 3D space in discrete units. 
     Calculate the volume of the rectangle described by the 
     start point and the end point as opposing corners of the rectangle.
     Avoid using external tools.
-            
+
     """
     for d in question:
         text += f"{d}\n"
 
-    text += f"\nAnswer: /spoiler {answer}"
+    text += f"\n/spoiler Answer: {answer}"
 
     return text
 
