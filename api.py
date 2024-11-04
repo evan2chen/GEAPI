@@ -1,7 +1,7 @@
 
 from flask import Flask, jsonify, request
 from explain import *
-
+import random
 
 app = Flask(__name__)
 
@@ -43,13 +43,55 @@ def explain():
 def mysterybox():
     return "welcome to the mystery box have fun"
 
+@app.route('/mystery_box/cube', methods = ['GET'])
+def cube():
+    from collections import defaultdict
+    actions = ["north", "south", "east", "west", "up", "down"]
+    freq = defaultdict(int)
+    question = []
+    for i in range (10):
+        action = random.choice(actions)
+        question.append(action)
+        freq[action] += 1
+    height =abs( freq["up"] - freq["down"])
+    length = abs(freq["west"] - freq["east"])
+    width = abs(freq["north"] - freq["south"])
+    answer = (length+1)*(width+1)*(height+1)
+
+    text = """
+    A cube moves through 3D space in discrete units. 
+    Calculate the volume of the rectangle described by the 
+    start point and the end point as opposing corners of the rectangle.
+    Avoid using external tools.
+            
+    """
+    for d in question:
+        text += f"{d}\n"
+
+    text += f"\nAnswer: /spoiler {answer}"
+
+    return text
+
 @app.route('/mystery_box/hi', methods=['GET'])
 def hi():
-    return "hi"
+    randmsg = [
+        "hi",
+        "hello",
+            
+    ]
+    return random.choice(randmsg)
 
 @app.route('/mystery_box/help', methods=['GET'])
 def help():
-    return "HELLLP HELLP!!! HELP MEE HELP HELP"
+
+    randmsg = [
+        "HELLLP HELLP!!! HELP MEE HELP HELP",
+        "sorry cant help",
+        "try doing $double all",
+        "ill help if you ask one more time",
+        "/tts lol"
+    ]
+    return random.choice(randmsg)
 
 @app.route('/mystery_box/lol', methods=['GET'])
 def lol():
