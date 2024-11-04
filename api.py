@@ -58,19 +58,14 @@ def cube():
     width = abs(freq["North"] - freq["South"])
     answer = (length+1)*(width+1)*(height+1)
 
-    text = """
-    A cube of volume 1 moves through 3D space in discrete units. 
-    Calculate the volume of the rectangle described by the 
-    start point and the end point as opposing corners of the rectangle.
-    Avoid using external tools.
-
-    """
+    text = """A cube of volume 1 moves through 3D space in discrete units.\nCalculate the volume of the rectangle described by the\nstart point and the end point as opposing corners of the rectangle.\nAvoid using external tools.\n"""
     for d in question:
-        text += f"{d}\n"
+        text += f"{d}\n\n"
 
-    text += f"\n/spoiler Answer: {answer}"
+    text += f"/spoiler Answer: {answer}"
 
     return text
+
 
 @app.route('/mystery_box/hi', methods=['GET'])
 def hi():
@@ -89,13 +84,18 @@ def help():
         "sorry cant help",
         "try doing $double all",
         "ill help if you ask one more time",
-        "/tts lol"
+        "lol"
     ]
     return random.choice(randmsg)
 
 @app.route('/mystery_box/lol', methods=['GET'])
 def lol():
     return "?"
+
+
+@app.route('/mystery_box/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
+def catch_mystery_box(path):
+    return f"{path} isn't a valid command. add suggestions to $feedback if it should be a command"
 
 
 if __name__ == '__main__':
