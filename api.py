@@ -58,11 +58,11 @@ def cube():
     width = abs(freq["North"] - freq["South"])
     answer = (length+1)*(width+1)*(height+1)
 
-    text = """A cube of volume 1 moves through 3D space in discrete units.\nCalculate the volume of the rectangle described by the\nstart point and the end point as opposing corners of the rectangle.\nAvoid using external tools.\n"""
+    text = """A cube of volume 1 moves through 3D space in discrete units.\nCalculate the volume of the rectangle described by the\nstart point and the end point as opposing corners of the rectangle.\nAvoid using external tools.\n\n"""
     for d in question:
-        text += f"{d}\n\n"
+        text += f"{d}\n"
 
-    text += f"/spoiler Answer: {answer}"
+    text += f"\nAnswer: ||{answer}||"
 
     return text
 
