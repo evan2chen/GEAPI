@@ -39,11 +39,11 @@ def explain():
     return "send a message please"
 
 
-@app.route('/mystery_box/', methods=['GET'])
+@app.route('/mystery_box/', methods=['POST'])
 def mysterybox():
     return "welcome to the mystery box have fun"
 
-@app.route('/mystery_box/cube', methods = ['GET'])
+@app.route('/mystery_box/cube', methods = ['POST'])
 def cube():
     from collections import defaultdict
     actions = ["North", "South", "East", "West", "Up", "Down"]
@@ -62,12 +62,12 @@ def cube():
     for d in question:
         text += f"{d}\n"
 
-    text += f"\nAnswer: ||{answer}||"
+    text += f"\nAnswer: ||    {answer}   ||"
 
     return text
 
 
-@app.route('/mystery_box/hi', methods=['GET'])
+@app.route('/mystery_box/hi', methods=['POST'])
 def hi():
     randmsg = [
         "hi",
@@ -76,7 +76,7 @@ def hi():
     ]
     return random.choice(randmsg)
 
-@app.route('/mystery_box/help', methods=['GET'])
+@app.route('/mystery_box/help', methods=['POST'])
 def help():
 
     randmsg = [
@@ -88,7 +88,7 @@ def help():
     ]
     return random.choice(randmsg)
 
-@app.route('/mystery_box/lol', methods=['GET'])
+@app.route('/mystery_box/lol', methods=['POST'])
 def lol():
     return "?"
 
