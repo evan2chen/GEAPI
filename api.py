@@ -7,33 +7,22 @@ app = Flask(__name__)
 
 @app.route('/ping', methods = ['POST'])
 def ping():
-    return "ping received"
+    return "ping received from GEAPI"
 
 
-@app.route('/')
-def empty():
-    return jsonify({"message": "hello this is an empty page"})
+
 
 
 @app.route('/val', methods = ['POST'])
 @app.route('/valassistant',methods = ['POST'])
 def positioning():
-    map = request.args.get('map', default = None)
-    gun = request.args.get('weapon', default = None)
-    rank = request.args.get('rank', default = None)
-    if not map or not gun or not rank:
-        return jsonify({"error": "Missing parameters"}), 400
-    
-    map = map.lower()
-    gun = gun.lower()
-    rank = rank.lower()
-
-    return f"You requested to see the positioning guide for {rank} players on {map} with {gun}"
+    pass
+    return 'this is the val assistant endpoint, updates coming soon'
 
 @app.route('/explain', methods = ['POST'])
 def explain():
-    message = request.json.get('message', None)
-    user = request.json.get('userID', None)
+    message = request.message
+    user = request.client
 
     if message is not None and message != "":
         return GEA_Chat.static_explain(message)
@@ -45,16 +34,10 @@ def explain():
 @app.route('/mb', methods = ['POST'])
 @app.route('/mystery_box/', methods=['POST'])
 def mysterybox():
-    message = request.json.get('message', None)
-    return message
+    return request.message
 
 
 
-
-@app.route('/mystery_box/test', methods = ['POST'])
-def test():
-    message = request.json.get('message', None)
-    return message
 
 
 
@@ -110,6 +93,14 @@ def lol():
     return "?"
 
 
+
+
+
+
+
+@app.route('/')
+def empty():
+    return jsonify({"message": "hello this is an empty page"})
 @app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
 def catch_mystery_box(path):
     return f"{path}({request.method}) isn't a valid endpoint. add suggestions to $feedback if it should be a command", 404
