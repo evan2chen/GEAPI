@@ -5,7 +5,7 @@ import random
 
 app = Flask(__name__)
 
-@app.route('/ping', methods = ['POST'])
+@app.route('/ping', methods = ['POST', 'GET'])
 def ping():
     return "ping received from GEAPI"
 
@@ -21,8 +21,8 @@ def positioning():
 
 @app.route('/explain', methods = ['POST'])
 def explain():
-    message = request.message
-    user = request.client
+    message = request.json.get("body", None)
+    user = request.json.get("client", None)
 
     if message is not None and message != "":
         return GEA_Chat.static_explain(message)
@@ -34,7 +34,8 @@ def explain():
 @app.route('/mb', methods = ['POST'])
 @app.route('/mystery_box/', methods=['POST'])
 def mysterybox():
-    return request.message
+    return request.json.get("body", "emptyString")
+
 
 
 
